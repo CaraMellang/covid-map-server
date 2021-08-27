@@ -4,7 +4,7 @@ const request = require("request");
 const convert = require("xml-js");
 const { serviceKeyEncoding, serviceKeyDecoding } = require("../lib/ServiceKey");
 
-const address = `http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=${serviceKeyEncoding}`;
+const address = `http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=${serviceKeyEncoding}&numOfRows=100`;
 
 router.get("/", (req, res) => {
   request(address, (error, response, body) => {

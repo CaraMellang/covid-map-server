@@ -1,8 +1,15 @@
 const express = require("express");
 const app = express();
 const test = require("./routes/test");
+const cors = require("cors");
 
-app.use("/api", test);
+let corsOption ={
+    origin:"http://localhost:3000",
+    optionsSuccessStatus: 200
+}
+
+
+app.use("/api",cors(corsOption), test);
 
 const port = 4000; //노드 서버가 사용할 포트
 app.listen(port, () => console.log(`Listening on port ${port}`));
