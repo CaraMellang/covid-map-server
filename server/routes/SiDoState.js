@@ -4,18 +4,21 @@ const request = require("request");
 const convert = require("xml-js");
 const { serviceKeyEncoding, serviceKeyDecoding } = require("../lib/ServiceKey");
 
+
 const now = new Date();
-const hour1 = String(now.getFullYear()).padStart(2, "0");
-const minute1 = String(now.getMonth() + 1).padStart(2, "0");
-const seconds1 = String(now.getDate()).padStart(2, "0");
-// console.log(hour1, minute1, seconds1);
+const yearNow = String(now.getFullYear()).padStart(2, "0");
+const monthNow = String(now.getMonth() + 1).padStart(2, "0");
+const dayNow = String(now.getDate()).padStart(2, "0");
+const nowTime = yearNow + monthNow + dayNow;
+// console.log(nowTime);
 const yester = new Date(now.setDate(now.getDate() - 1));
-const hour = String(yester.getFullYear()).padStart(2, "0");
-const minute = String(yester.getMonth() + 1).padStart(2, "0");
-const seconds = String(yester.getDate()).padStart(2, "0");
+const year = String(yester.getFullYear()).padStart(2, "0");
+const month = String(yester.getMonth() + 1).padStart(2, "0");
+const day = String(yester.getDate()).padStart(2, "0");
+const yestetTime = year + month + day;
 // console.log(hour, minute, seconds);
 
-const address = `http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=${serviceKeyEncoding}&numOfRows=100`;
+const address = `http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=${serviceKeyEncoding}&numOfRows=100&startCreateDt=${yestetTime}&endCreateDt=${nowTime}`;
 
 router.get("/", (req, res) => {
   request(address, (error, response, body) => {
