@@ -19,7 +19,6 @@ const circularReplacer = () => {
       // Add current value to the set
       seen.add(value);
     }
-
     // return the value
     return value;
   };
