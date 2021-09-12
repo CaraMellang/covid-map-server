@@ -16,7 +16,6 @@ const circularReplacer = () => {
       if (seen.has(value)) {
         return;
       }
-
       // Add current value to the set
       seen.add(value);
     }
