@@ -1,37 +1,41 @@
 const express = require("express");
 const router = express.Router();
-const request = require("request");
-const convert = require("xml-js");
-const { Authorization } = require("../lib/ServiceKey");
+const { clientId, clientSecret } = require("../lib/ServiceKey");
 const axios = require("axios");
 
 const address = `https://openapi.naver.com/v1/search/news.json`;
-const address2 = `https://dapi.kakao.com/v2/search/web`;
 
 const circularReplacer = () => {
   const seen = new WeakSet();
 
   return (key, value) => {
+    // If type of value is an
+    // object or value is null
     if (typeof value === "object" && value !== null) {
+      // If it has been seen before
       if (seen.has(value)) {
         return;
       }
 
+      // Add current value to the set
       seen.add(value);
     }
+
+    // return the value
     return value;
   };
-}; 
+}; //https://www.geeksforgeeks.org/how-to-print-a-circular-structure-in-a-json-like-format-using-javascript/
 
 router.get("/", (req, res) => {
   axios({
     method: "get",
-    url: address2,
+    url: address,
     params: {
-      query: "국내코로나",
+      query: "코로나",
     },
     headers: {
-      Authorization: Authorization,
+      "X-Naver-Client-Id": clientId,
+      "X-Naver-Client-Secret": clientSecret,
     },
   })
     .then((data) => {
@@ -40,17 +44,6 @@ router.get("/", (req, res) => {
     .catch((error) => {
       console.log(error);
     });
-
-  // request(address, (error, response, body) => {
-  //   if (error) {
-  //     console.log(error);
-  //   }
-  //   let obj = body;
-  //   // console.log(obj);
-  //   let xmlToJson = convert.xml2json(obj, { compact: true, spaces: 4 });
-  //   console.log(xmlToJson);
-  //   res.send(xmlToJson);
-  // });
 });
 
 module.exports = router;
