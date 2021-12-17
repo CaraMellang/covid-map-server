@@ -13,10 +13,10 @@ let corsOption = {
 };
 
 // app.use("/api",cors(corsOption), test);
-app.use("/sidoapi", cors(corsOption), SiDoState);
-app.use("/infectedapi", cors(corsOption), InfectedState);
-app.use("/alloverflowapi", cors(corsOption), AllOverflow);
-app.use("/newsapi", cors(corsOption), news);
+app.use("/sidoapi", cors(), SiDoState);
+app.use("/infectedapi", cors(), InfectedState);
+app.use("/alloverflowapi", cors(), AllOverflow);
+app.use("/newsapi", cors(), news);
 
 const port = 4000 || process.env.PORT; //노드 서버가 사용할 포트
 app.listen(port, () => console.log(`Listening on port ${port}`));

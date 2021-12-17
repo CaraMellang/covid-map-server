@@ -32,8 +32,9 @@ router.get("/", (req, res) => {
       query: "코로나",
     },
     headers: {
-      "X-Naver-Client-Id": clientId,
-      "X-Naver-Client-Secret": clientSecret,
+      
+      "X-Naver-Client-Id": process.env.CLIENTID,
+      "X-Naver-Client-Secret": process.env.CLIENTSECRET,
     },
   })
     .then((data) => {

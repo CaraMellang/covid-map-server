@@ -17,7 +17,7 @@ const day = String(yester.getDate()).padStart(2, "0");
 const yestetTime = year + month + day;
 // console.log(hour, minute, seconds);
 
-const address = `http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=${serviceKeyEncoding}&numOfRows=30&startCreateDt=${yestetTime}&endCreateDt=${nowTime}`;
+const address = `http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=${process.env.SERVICEKEYENCODING}&numOfRows=30&startCreateDt=${yestetTime}&endCreateDt=${nowTime}`;
 
 router.get("/", (req, res) => {
   request(address, (error, response, body) => {
