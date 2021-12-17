@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const test = require("./routes/test");
+// const test = require("./routes/test");
 const cors = require("cors");
 const SiDoState = require("./routes/SiDoState");
 const InfectedState = require("./routes/InfectedState");
@@ -18,5 +18,5 @@ app.use("/infectedapi", cors(), InfectedState);
 app.use("/alloverflowapi", cors(), AllOverflow);
 app.use("/newsapi", cors(), news);
 
-const port = 4000 || process.env.PORT; //노드 서버가 사용할 포트
+const port = process.env.PORT || 4000; //노드 서버가 사용할 포트
 app.listen(port, () => console.log(`Listening on port ${port}`));
