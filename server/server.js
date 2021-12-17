@@ -18,5 +18,5 @@ app.use("/infectedapi", cors(corsOption), InfectedState);
 app.use("/alloverflowapi", cors(corsOption), AllOverflow);
 app.use("/newsapi", cors(corsOption), news);
 
-const port = 4000; //노드 서버가 사용할 포트
+const port = 4000 || process.env.PORT; //노드 서버가 사용할 포트
 app.listen(port, () => console.log(`Listening on port ${port}`));
