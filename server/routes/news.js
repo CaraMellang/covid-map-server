@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { clientId, clientSecret } = require("../lib/ServiceKey");
+// const { clientId, clientSecret } = require("../lib/ServiceKey");
 const axios = require("axios");
 
 const address = `https://openapi.naver.com/v1/search/news.json`;
