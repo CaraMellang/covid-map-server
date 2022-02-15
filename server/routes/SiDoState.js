@@ -4,7 +4,6 @@ const request = require("request");
 const convert = require("xml-js");
 // const { serviceKeyEncoding, serviceKeyDecoding } = require("../lib/ServiceKey");
 
-
 const now = new Date();
 const yearNow = String(now.getFullYear()).padStart(2, "0");
 const monthNow = String(now.getMonth() + 1).padStart(2, "0");
@@ -18,6 +17,8 @@ const day = String(yester.getDate()).padStart(2, "0");
 const yestetTime = year + month + day;
 // console.log(hour, minute, seconds);
 
+const dotenv = require("dotenv");
+dotenv.config();
 const address = `http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=${process.env.SERVICEKEYENCODING}&numOfRows=100&startCreateDt=${yestetTime}&endCreateDt=${nowTime}`;
 
 router.get("/", (req, res) => {

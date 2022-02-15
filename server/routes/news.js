@@ -3,6 +3,8 @@ const router = express.Router();
 // const { clientId, clientSecret } = require("../lib/ServiceKey");
 const axios = require("axios");
 
+const dotenv = require("dotenv");
+dotenv.config();
 const address = `https://openapi.naver.com/v1/search/news.json`;
 
 const circularReplacer = () => {
